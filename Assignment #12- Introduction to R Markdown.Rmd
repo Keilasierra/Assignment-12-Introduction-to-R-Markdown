@@ -1,0 +1,72 @@
+---
+title: "My R Markdown Primer"
+output: html_document
+date: "2025-11-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+R Markdown is a way to combine regular text, R code, and formatted math in a single file. 
+Instead of writing a report in Word and then running code somewhere else, I can keep 
+everything together. When I knit the document, R runs all of the code chunks and 
+automatically updates the results, which helps with reproducible analysis.
+
+## What is R Markdown?
+
+R Markdown lets me write in plain text using simple symbols for formatting. 
+For example, I can use `#` for headings, `*` for bullet points, and backticks for code. 
+In the same document, I can also create R code chunks that are actually executed when 
+I knit the file. The final output looks like a polished report, but it is still connected 
+to the code that generated the results, which makes it easier to fix mistakes and re-run 
+the analysis later.
+
+## Using LaTeX Math
+
+R Markdown also supports LaTeX math, which is useful for writing equations. 
+I can write inline math like this: $ \alpha + \beta = \gamma $ inside a sentence.
+
+Here is a displayed equation:
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+$$
+
+Using LaTeX makes it easier to show more formal math in my reports.
+
+## Loading a Dataset
+
+```{r load-data}
+library(ggplot2)
+data("mpg")
+
+head(mpg)
+```
+
+## Simple Analysis and Plot
+
+```{r simple-plot}
+summary(mpg$hwy)
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  labs(
+    title = "Engine Displacement vs Highway MPG",
+    x = "Engine Displacement (L)",
+    y = "Highway MPG"
+  )
+```
+
+## Reflection
+
+Using R Markdown was different at first because it’s not like writing a normal paper. 
+But once I understood the Markdown symbols and how the code chunks work, it actually 
+made everything easier. I liked that knitting the file automatically updates the plot 
+and results without me having to copy/paste anything.
+
+The only issues I ran into were small mistakes, like forgetting a backtick or messing 
+up the header. But once I fixed those, it knitted fine. Overall, I like how organized 
+R Markdown feels, and I definitely see why people use it for reproducible analysis.
